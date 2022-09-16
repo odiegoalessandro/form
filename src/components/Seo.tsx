@@ -1,10 +1,22 @@
 import Head from "next/head"
 
-export default function Seo({ title, description }) {
+interface SeoProps {
+  title?: string
+  description?: string
+  keywords?: string
+  image_url?: string
+}
+
+export default function Seo({
+  title,
+  description,
+  keywords,
+  image_url
+}: SeoProps) {
   const metaDescription = description || "this is a description"
   const defaultTitle = title || "NextJS Project"
-  const imageUrl = ""
-  const metaKeywords = ""
+  const imageUrl = image_url || ""
+  const metaKeywords = keywords || ""
 
   return (
     <Head>
@@ -32,3 +44,4 @@ export default function Seo({ title, description }) {
     </Head>
   )
 }
+

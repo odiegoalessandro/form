@@ -1,37 +1,71 @@
-import { Container, Heading, SimpleGrid, Text } from "@chakra-ui/react";
-import Seo from "../components/Seo";
+import {
+  Button,
+  ButtonProps,
+  Container,
+  forwardRef,
+  Heading,
+  HStack,
+  Text
+} from "@chakra-ui/react"
+import Link from "next/link"
+import Seo from "../components/Seo"
+
+const StyledButton = forwardRef<ButtonProps, "button">((props, ref) => (
+  <Button
+    fontSize="lg"
+    fontWeight="bold"
+    textTransform="capitalize"
+    w="10rem"
+    h="4rem"
+    borderRadius="lg"
+    ref={ref}
+    {...props}
+  />
+))
 
 export default function Home() {
   return (
-    <Container maxW="5xl" py={4} centerContent>
+    <Container
+      maxW="4xl"
+      h="100vh"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+    >
       <Seo title="Homepage" description="Pagina inicial" />
-
-      <Heading size="2xl" as="h1" textAlign="center">
-        Lorem ipsum dolor sit amet
+      <Heading as="h1" size="3xl" fontWeight={800} textAlign="center">
+        Olá, seja bem vindo ao meu{" "}
+        <Heading as="span" size="3xl" fontWeight={800} color="teal.300">
+          projeto
+        </Heading>
       </Heading>
-      <Text as="p" fontWeight="bold" fontSize="2xl" mt={10} textAlign="center">
-        Lorem ipsum dolor sit amet. Eum assumenda culpa et deleniti temporibus
-        in nihil reprehenderit aut praesentium officia! Non totam incidunt id
-        amet nihil quo doloribus omnis rem placeat veniam qui velit enim quo
-        error doloribus. Est fugiat labore rem ipsa incidunt eos odio provident
-        ut adipisci distinctio dicta numquam aut harum odit et animi expedita?
-        Ut iste ipsum aut corrupti suscipit aut mollitia accusamus aut galisum
-        perspiciatis et earum ipsam et nihil possimus aut eligendi voluptatem.
+      <Text as="p" fontSize="xl" mt={10} color="#778877" textAlign="center">
+        Esse projeto foi feito para simular uma pesquisa sobre media salarial, e
+        analisar em media quanto tempo o ser humano medio demora para conquistar
+        um salario "medio", carro e casa proprio. Os dados aqui apresentados não
+        são fieis a realidade.
       </Text>
-      <SimpleGrid as="div" columns={2} spacing={10} my={10}>
-        <Text as="p" fontSize="xl">
-          Lorem ipsum dolor sit amet. Eum assumenda culpa et deleniti temporibus
-          in nihil reprehenderit aut praesentium officia! Non totam incidunt id
-          amet nihil quo doloribus omnis rem placeat veniam qui velit enim quo
-          error doloribus.
-        </Text>
-        <Text as="p" fontSize="xl">
-          Lorem ipsum dolor sit amet. Eum assumenda culpa et deleniti temporibus
-          in nihil reprehenderit aut praesentium officia! Non totam incidunt id
-          amet nihil quo doloribus omnis rem placeat veniam qui velit enim quo
-          error doloribus.
-        </Text>
-      </SimpleGrid>
+      <HStack mt={10} spacing={5}>
+        <Link href="/dashboard">
+          <StyledButton
+            color="black"
+            bgColor="gray.100"
+            _hover={{ bgColor: "gray.200" }}
+          >
+            Dashboard
+          </StyledButton>
+        </Link>
+        <Link href="/form">
+          <StyledButton
+            color="white"
+            bgColor="teal.300"
+            _hover={{ bgColor: "teal.400" }}
+          >
+            Iniciar
+          </StyledButton>
+        </Link>
+      </HStack>
     </Container>
-  );
+  )
 }
